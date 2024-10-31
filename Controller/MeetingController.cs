@@ -67,7 +67,7 @@ public class Controller
         }
 
         controllerView.DisplayMessage("\n");
-        controllerView.DisplayMessage("At what time will the meeting take place? (Write it as Hours, Minutes)");
+        controllerView.DisplayMessage("At what time will the meeting take place? (Write it as \"Hours:Minutes\")");
         if(!TimeOnly.TryParse(Console.ReadLine(), out TimeOnly time))
         {
             Console.WriteLine("Invalid time, please try again");
