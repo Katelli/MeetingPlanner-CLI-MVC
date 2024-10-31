@@ -81,8 +81,7 @@ public class Controller
         if(participants.Length < 1 && string.IsNullOrWhiteSpace(newParticipant))
         {
             controllerView.DisplayMessage("You can't hold a meeting by yourself, please write some names");
-            newParticipant = Console.ReadLine();
-            
+            newParticipant = Console.ReadLine();            
         }
         
         if(!string.IsNullOrWhiteSpace(newParticipant))
@@ -90,20 +89,23 @@ public class Controller
             participants.Append(newParticipant);
             controllerView.DisplayMessage("Do you want to add anyone else? (Write Yes to add someone else, or any key to continue)");
             string? choice = Console.ReadLine();
-            switch (choice)
+            while(choice == "Yes")
             {
-                case "Yes":
+                controllerView.DisplayMessage("Who will participate in the meeting?");
+                newParticipant = Console.ReadLine();
+                controllerView.DisplayMessage("Do you want to add anyone else? (Write Yes to add someone else, or any key to continue)");
+                choice = Console.ReadLine();
+                if(string.IsNullOrWhiteSpace(newParticipant))
+                {
+                    Console.WriteLine("Name can not be empty");
                     newParticipant = Console.ReadLine();
-                    participants.Append(newParticipant);
-                    break;
-                
-                default:
-                    controllerModel.CreateMeeting(title, organizer, date, time, participants);
-                    controllerView.Display(controllerModel.GetMeetings());
-                    break;
+                    controllerView.DisplayMessage("Do you want to add anyone else? (Write Yes to add someone else, or any key to continue)");
+                    choice = Console.ReadLine();
+                }                
             }
-        }
-        
+            controllerModel.CreateMeeting(title, organizer, date, time, participants);
+            controllerView.Display(controllerModel.GetMeetings());
+        }      
     }
 
     // Update
