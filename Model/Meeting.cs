@@ -29,8 +29,18 @@ public class Model
     {
         Meetings = new List<Meeting>
         {
-            new Meeting("Social Committee", "Donna", DateOnly.Parse("12.12.2025"), new TimeOnly(14,00), ["Joe", "Marie, Jane"]),
-            new Meeting("Executive Meeting", "Frank", DateOnly.Parse("14.05.2025"), new TimeOnly(10,30), ["Lily", "Melody"]),
+            new Meeting("Social Committee", "Donna", DateOnly.Parse("12.12.2025"), TimeOnly.Parse("14:00"), ["Joe", "Marie, Jane"]),
+            new Meeting("Executive Meeting", "Frank", DateOnly.Parse("14.05.2025"), TimeOnly.Parse("10:30"), ["Lily", "Melody"]),
         };
+    }
+
+    public void CreateMeeting(string title, string organizer, DateOnly date, TimeOnly time, string[] participants)
+    {
+        Meetings.Add(new Meeting(title, organizer, date, time, participants));
+    }
+
+    public List<Meeting> GetMeetings()
+    {
+        return Meetings;
     }
 }
