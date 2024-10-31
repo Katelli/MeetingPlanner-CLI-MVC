@@ -1,8 +1,11 @@
 public class View
 {
-    public void Display(Model model)
+    public void Display(List<Meeting> Meetings)
     {
-        Console.WriteLine(model.ToString());
+        foreach (var Meeting in Meetings)
+        {
+            Console.WriteLine(Meeting.ToString());
+        }
     }
 
     public void DisplayMessage(string message)
