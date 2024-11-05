@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 public class Meeting
 {
     public string Title { get; set; }
@@ -19,17 +21,19 @@ public class Meeting
 
     public override string ToString()
     {
-        return $"Meeting: {Title}\nOrganized by: {Organizer}\nDate: {Date}\tTime: {Time}\nParticipants: {Participants}";
+        string ArrayAsString (IEnumerable<string>Participants) => String.Join(", ", Participants);
+
+        return $"\nMeeting: {Title}\nOrganized by: {Organizer}\nDate: {Date}\tTime: {Time}\nParticipants: {ArrayAsString(Participants)}";
     }
 }
-public class Model
+public class MeetingList
 {
     public List<Meeting> Meetings {get; set;}
-    public Model()
+    public MeetingList()
     {
         Meetings = new List<Meeting>
         {
-            new Meeting("Social Committee", "Donna", DateOnly.Parse("12.12.2025"), TimeOnly.Parse("14:00"), ["Joe", "Marie, Jane"]),
+            new Meeting("Social Committee", "Donna", DateOnly.Parse("12.12.2025"), TimeOnly.Parse("14:00"), ["Joe", "Marie", "Jane"]),
             new Meeting("Executive Meeting", "Frank", DateOnly.Parse("14.05.2025"), TimeOnly.Parse("10:30"), ["Lily", "Melody"]),
         };
     }

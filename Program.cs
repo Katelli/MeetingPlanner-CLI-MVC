@@ -4,11 +4,10 @@ class Program
 {
     static void Main(string[] args)
     {
-        Model model = new Model();
+        MeetingList model = new MeetingList();
         View view = new View();
         Controller controller = new Controller(model, view);
 
-        controller.CreateMeeting();
-        Console.ReadLine();
+        controller.Run();
     }
 }
